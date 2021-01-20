@@ -1,3 +1,13 @@
+// JS210 Fundamentals of JavaScript for Programmers > Practice Problems: Logic and Flow Control
+
+/*
+Odd Numbers
+
+Write a function that takes a positive integer as an argument, and logs all the odd
+numbers from 1 to the passed in number (inclusive). All numbers should be logged on
+separate lines.
+*/
+
 function logOddNumbers(number) {
   for (let i = 1; i <= number; i += 2) {
     console.log(i);
