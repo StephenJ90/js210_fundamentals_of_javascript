@@ -64,28 +64,90 @@ Algorithm:
 122 as the conditional value in which to subtract 26.
 - if the character is neither upper or lower case, concat the current character
 to the new string.
+
+what are the conditions that i need to check?
+- if the character is uppercase
+- if the character is uppercase and greater than N
+- if the character is lowercase
+- if the character is lowercase and greater than n
+- if the character is a non-alpha character
+
 */
 
+// Solution 2
+
+const UPPER_A_CHAR_CODE = 'A'.charCodeAt();
+const UPPER_Z_CHAR_CODE = 'Z'.charCodeAt();
+const UPPER_N_CHAR_CODE = 'N'.charCodeAt();
+const LOWER_A_CHAR_CODE = 'a'.charCodeAt();
+const LOWER_Z_CHAR_CODE = 'z'.charCodeAt();
+const LOWER_N_CHAR_CODE = 'n'.charCodeAt();
+const ROTATIONS = 13;
+const CHAR_CODE_OFFSET = 26;
+
+function isUpperCase(charCode) {
+  return (charCode >= UPPER_A_CHAR_CODE && charCode <= UPPER_Z_CHAR_CODE);
+}
+
+function isLowerCase(charCode) {
+  return (charCode >= LOWER_A_CHAR_CODE && charCode <= LOWER_Z_CHAR_CODE);
+}
+
+function getNextCharCode(charCode) {
+  if ((isUpperCase(charCode) && charCode >= UPPER_N_CHAR_CODE) ||
+    (isLowerCase(charCode) && charCode >= LOWER_N_CHAR_CODE)) {
+      return charCode + ROTATIONS - CHAR_CODE_OFFSET;
+    } else if (isUpperCase(charCode) || isLowerCase(charCode)) {
+      return charCode + ROTATIONS;
+    } else {
+      return charCode;
+    }
+}
 
 function rot13(string) {
-  let rotString = ''
+  let rotString = '';
 
   for (let index = 0; index < string.length; index += 1) {
     let currentCharCode = string.charCodeAt(index);
 
-    if (currentCharCode >= 65 && currentCharCode <= 90) {
-      currentCharCode += 13;
+    let newCharCode = getNextCharCode(currentCharCode)
+    rotString += String.fromCharCode(newCharCode);
+  }
 
-      if (currentCharCode > 90) {
+  return rotString;
+}
+
+console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
+
+// Solution 1
+
+const UPPERCASE_A_CHAR_CODE = 65;
+const UPPERCASE_Z_CHAR_CODE = 90;
+const LOWERCASE_A_CHAR_CODE = 97;
+const LOWERCASE_Z_CHAR_CODE = 122;
+const ROTATE_CHARACTER = 13;
+
+
+function rot13(string) {
+  let rotString = '';
+
+  for (let index = 0; index < string.length; index += 1) {
+    let currentCharCode = string.charCodeAt(index);
+
+    if (currentCharCode >= UPPERCASE_A_CHAR_CODE && currentCharCode <= UPPERCASE_Z_CHAR_CODE) {
+      currentCharCode += ROTATE_CHARACTER;
+
+      if (currentCharCode > UPPERCASE_Z_CHAR_CODE) {
         currentCharCode -= 26;
       }
 
       rotString += String.fromCharCode(currentCharCode);
 
-    } else if (currentCharCode >= 97 && currentCharCode <= 122) {
-      currentCharCode += 13;
+    } else if (currentCharCode >= LOWERCASE_A_CHAR_CODE && currentCharCode <= LOWERCASE_Z_CHAR_CODE) {
+      currentCharCode += ROTATE_CHARACTER;
 
-      if (currentCharCode > 122) {
+      if (currentCharCode > LOWERCASE_Z_CHAR_CODE) {
         currentCharCode -= 26;
       }
 
@@ -98,7 +160,3 @@ function rot13(string) {
 
   return rotString;
 }
-
-console.log(rot13('Teachers open the door, but you must enter by yourself.'))
-
-console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
