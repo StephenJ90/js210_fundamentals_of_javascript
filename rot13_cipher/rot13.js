@@ -169,14 +169,16 @@ Only convert to and from the character codes when you actually need to rotate a 
 */
 
 const Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const Rotate = 13;
+const Alphabet_Size = 26; 
 
 // HOW DO I GET RID OF REPETITION?!?!?!
 
 function rotateChar(char) {  
   if (Alphabet.includes(char)) {
-    return Alphabet[(Alphabet.indexOf(char) + 13) % 26];
+    return Alphabet[(Alphabet.indexOf(char) + Rotate) % Alphabet_Size];
   } else if (Alphabet.includes(char.toUpperCase())) {
-    return Alphabet[(Alphabet.indexOf(char.toUpperCase()) + 13) % 26].toLowerCase();
+    return Alphabet[(Alphabet.indexOf(char.toUpperCase()) + Rotate) % Alphabet_Size].toLowerCase();
   } else {
     return char;
   }
