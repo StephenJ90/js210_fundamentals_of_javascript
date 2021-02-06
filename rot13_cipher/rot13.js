@@ -74,53 +74,7 @@ what are the conditions that i need to check?
 
 */
 
-// Solution 2
-
-const UPPER_A_CHAR_CODE = 'A'.charCodeAt();
-const UPPER_Z_CHAR_CODE = 'Z'.charCodeAt();
-const UPPER_N_CHAR_CODE = 'N'.charCodeAt();
-const LOWER_A_CHAR_CODE = 'a'.charCodeAt();
-const LOWER_Z_CHAR_CODE = 'z'.charCodeAt();
-const LOWER_N_CHAR_CODE = 'n'.charCodeAt();
-const ROTATIONS = 13;
-const CHAR_CODE_OFFSET = 26;
-
-function isUpperCase(charCode) {
-  return (charCode >= UPPER_A_CHAR_CODE && charCode <= UPPER_Z_CHAR_CODE);
-}
-
-function isLowerCase(charCode) {
-  return (charCode >= LOWER_A_CHAR_CODE && charCode <= LOWER_Z_CHAR_CODE);
-}
-
-function getNextCharCode(charCode) {
-  if ((isUpperCase(charCode) && charCode >= UPPER_N_CHAR_CODE) ||
-    (isLowerCase(charCode) && charCode >= LOWER_N_CHAR_CODE)) {
-      return charCode + ROTATIONS - CHAR_CODE_OFFSET;
-    } else if (isUpperCase(charCode) || isLowerCase(charCode)) {
-      return charCode + ROTATIONS;
-    } else {
-      return charCode;
-    }
-}
-
-function rot13(string) {
-  let rotString = '';
-
-  for (let index = 0; index < string.length; index += 1) {
-    let currentCharCode = string.charCodeAt(index);
-
-    let newCharCode = getNextCharCode(currentCharCode)
-    rotString += String.fromCharCode(newCharCode);
-  }
-
-  return rotString;
-}
-
-console.log(rot13('Teachers open the door, but you must enter by yourself.'));
-console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
-
-// Solution 1
+// Solution 1 Revised
 
 const UPPERCASE_A_CHAR_CODE = 65;
 const UPPERCASE_Z_CHAR_CODE = 90;
@@ -160,3 +114,124 @@ function rot13(string) {
 
   return rotString;
 }
+
+// Solution 2
+
+const UPPER_A_CHAR_CODE = 'A'.charCodeAt();
+const UPPER_Z_CHAR_CODE = 'Z'.charCodeAt();
+const UPPER_N_CHAR_CODE = 'N'.charCodeAt();
+const LOWER_A_CHAR_CODE = 'a'.charCodeAt();
+const LOWER_Z_CHAR_CODE = 'z'.charCodeAt();
+const LOWER_N_CHAR_CODE = 'n'.charCodeAt();
+const ROTATIONS = 13;
+const CHAR_CODE_OFFSET = 26;
+
+function isUpperCase(charCode) {
+  return (charCode >= UPPER_A_CHAR_CODE && charCode <= UPPER_Z_CHAR_CODE);
+}
+
+function isLowerCase(charCode) {
+  return (charCode >= LOWER_A_CHAR_CODE && charCode <= LOWER_Z_CHAR_CODE);
+}
+
+function rotateCharCode(charCode) {
+  if ((isUpperCase(charCode) && charCode >= UPPER_N_CHAR_CODE) ||
+    (isLowerCase(charCode) && charCode >= LOWER_N_CHAR_CODE)) {
+      return charCode + ROTATIONS - CHAR_CODE_OFFSET;
+    } else if (isUpperCase(charCode) || isLowerCase(charCode)) {
+      return charCode + ROTATIONS;
+    } else {
+      return charCode;
+    }
+}
+
+function rot13(string) {
+  let rotString = '';
+
+  for (let index = 0; index < string.length; index += 1) {
+    let currentCharCode = string.charCodeAt(index);
+
+    let newCharCode = rotateCharCode(currentCharCode)
+    rotString += String.fromCharCode(newCharCode);
+  }
+
+  return rotString;
+}
+
+console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
+
+// Solution 3:
+/*
+instead of working with character codes, work with the actual characters instead.
+Only convert to and from the character codes when you actually need to rotate a character.
+
+*/
+
+const Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+// HOW DO I GET RID OF REPETITION?!?!?!
+
+function rotateChar(char) {  
+  if (Alphabet.includes(char)) {
+    return Alphabet[(Alphabet.indexOf(char) + 13) % 26];
+  } else if (Alphabet.includes(char.toUpperCase())) {
+    return Alphabet[(Alphabet.indexOf(char.toUpperCase()) + 13) % 26].toLowerCase();
+  } else {
+    return char;
+  }
+}
+
+function rot13(string) {
+  let rotString = '';
+
+  for (let index = 0; index < string.length; index += 1) {
+    rotString += rotateChar(string[index]);
+  }
+
+  return rotString;
+}
+
+// console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+// console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
+
+// Solution 4:
+
+const Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const Rotate = 13;
+const Alphabet_Size = 26; 
+
+function newUpcaseChar(char) {
+  let charCode = (Alphabet.indexOf(char) + Rotate) % Alphabet_Size;
+  return Alphabet[charCode];
+}
+
+function newDowncaseChar(char) {
+  let charCode = (Alphabet.indexOf(char.toUpperCase()) + Rotate) % Alphabet_Size;
+  return Alphabet[charCode].toLowerCase();
+}
+
+function rotateChar(char) {
+  if (char >= 'A' && char <= 'Z') {
+    return newUpcaseChar(char);
+  } else if (char >= 'a' && char <= 'z') {
+    return newDowncaseChar(char);
+  } else {
+    return char;
+  }
+}
+
+function rot13(string) {
+  let rotString = '';
+
+  const Alphabet = '';
+
+  for (let index = 0; index < string.length; index += 1) {
+    rotString += rotateChar(string[index]);
+  }
+
+  return rotString;
+}
+
+console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
