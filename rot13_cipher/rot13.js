@@ -224,8 +224,6 @@ function rotateChar(char) {
 function rot13(string) {
   let rotString = '';
 
-  const Alphabet = '';
-
   for (let index = 0; index < string.length; index += 1) {
     rotString += rotateChar(string[index]);
   }
