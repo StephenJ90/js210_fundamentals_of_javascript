@@ -68,7 +68,7 @@ console.log('Enter Unit of Measurement (meters or feet):')
 let unitType = readlineSync.prompt();
 
 if (unitType !== 'meters' && unitType !== 'feet') {
-  console.log('Error: Invalid Unit Type');
+  console.log('Error: Invalid Unit of Measurement');
   return;
 }
 
