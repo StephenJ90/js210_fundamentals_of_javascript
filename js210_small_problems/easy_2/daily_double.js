@@ -17,23 +17,23 @@ crunch('a');                          // "a"
 crunch('');                           // ""
 */
 
-// function crunch(string) {
-//   let newString = string[0] ? string[0] : '';
+function crunch(string) {
+  let newString = string[0] ? string[0] : '';
 
-//   for (let index = 1; index < string.length; index += 1) {
-//     if (string[index] !== string[index - 1]) {
-//       newString += string[index];
-//     }
-//   }
+  for (let index = 1; index < string.length; index += 1) {
+    if (string[index] !== string[index - 1]) {
+      newString += string[index];
+    }
+  }
 
-//   return newString;
-// }
+  return newString;
+}
 
-// crunch('ddaaiillyy ddoouubbllee');    // "daily double"
-// crunch('4444abcabccba');              // "4abcabcba"
-// crunch('ggggggggggggggg');            // "g"
-// crunch('a');                          // "a"
-// crunch('');                           // ""
+crunch('ddaaiillyy ddoouubbllee');    // "daily double"
+crunch('4444abcabccba');              // "4abcabcba"
+crunch('ggggggggggggggg');            // "g"
+crunch('a');                          // "a"
+crunch('');                           // ""
 
 // LS Solutions:
 
@@ -52,12 +52,6 @@ function crunch(text) {
   return crunchText;
 }
 
-crunch('ddaaiillyy ddoouubbllee');    // "daily double"
-crunch('4444abcabccba');              // "4abcabcba"
-crunch('ggggggggggggggg');            // "g"
-crunch('a');                          // "a"
-crunch('');
-
 // Further Exploration
 /*
 It's also possible to solve this using regular expressions. For a nice challenge,
@@ -68,4 +62,3 @@ don't use regular expressions?
 function crunch2(string) {
   return string.replace(/(.)\1/g, '');
 }
-
