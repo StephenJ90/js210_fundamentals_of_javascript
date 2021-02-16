@@ -1,4 +1,4 @@
-// JS210 - Small Problems > Easy 1
+// JS210 - Small Problems > Easy 2
 
 /*
 Bannerizer
@@ -110,7 +110,7 @@ function repeatChar(char, times) {
   }
 
   return repeated;
-}
+} 
 
 // Further Exploration:
 /*
@@ -120,6 +120,3 @@ You may assume no maximum if the second argument is omitted. For a real challeng
 word wrapping messages that are too long to fit, so that they appear on multiple lines 
 but are still contained within the box.
 */
-
-
-

@@ -1,4 +1,4 @@
-// JS210 - Small Problems > Easy 1
+// JS210 - Small Problems > Easy 2
 
 /*
 Fibonacci Number Location by Length
