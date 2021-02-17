@@ -82,3 +82,15 @@ function cleanUp(text) {
 const isLowerCaseLetter = (char) => char >= 'a' && char <= 'z';
 
 const isUpperCaseLetter = (char) => char >= 'A' && char <= 'Z';
+
+// Further Exploration:
+/*
+If you originally wrote your solution without using regular expressions, 
+try writing it with regular expressions to see how expressive and concise 
+your code can become. Note, however, that using regular expressions can 
+sometimes make your code less readable.
+*/
+
+function cleanUp(text) {
+  return text.replace(/[^a-z]+/gi, ' ');
+}
