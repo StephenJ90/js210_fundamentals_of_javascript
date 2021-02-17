@@ -45,6 +45,7 @@ function isAlphabetic(char) {
 }
 
 function cleanUp(text) {
+  const Regex = / {2,}/g;
   let cleanString = '';
 
   for (let index = 0; index < text.length; index += 1) {
@@ -57,15 +58,12 @@ function cleanUp(text) {
     }
   }
 
-  const Regex = / {2,}/g;
-  console.log(cleanString.replace(Regex, ' '));
+  return cleanString.replace(Regex, ' ');
 }
 
 cleanUp("---what's my +*& line?");    // " what s my line "
 
-
 // LS Solution:
-
 
 function cleanUp(text) {
   let cleanText = '';
