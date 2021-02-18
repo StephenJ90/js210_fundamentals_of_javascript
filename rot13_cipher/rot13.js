@@ -158,9 +158,6 @@ function rot13(string) {
   return rotString;
 }
 
-console.log(rot13('Teachers open the door, but you must enter by yourself.'));
-console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
-
 // Solution 3:
 /*
 instead of working with character codes, work with the actual characters instead.
@@ -193,9 +190,6 @@ function rot13(string) {
 
   return rotString;
 }
-
-// console.log(rot13('Teachers open the door, but you must enter by yourself.'));
-// console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
 
 // Solution 4:
 
@@ -235,3 +229,38 @@ function rot13(string) {
 
 console.log(rot13('Teachers open the door, but you must enter by yourself.'));
 console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
+
+// LS TA Solution to end my misery
+
+const Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const Rotate = 13;
+
+function rotateCharInAlphabet(char, alphabet) {
+  let charIndex = alphabet.indexOf(char);
+  if (charIndex === -1) {
+    return char;
+  } else {
+    return alphabet[(charIndex + Rotate) % alphabet.length];
+  }
+}
+
+function rotateChar(char) {
+  let rotatedChar = rotateCharInAlphabet(char, Alphabet);
+  if (rotatedChar === char) {
+    let lowerChar = char.toLowerCase();
+    let lowerAlphabet = Alphabet.toLowerCase();
+    rotatedChar = rotateCharInAlphabet(lowerChar, lowerAlphabet);
+  }
+
+  return rotatedChar;
+}
+
+function rot13(string) {
+  let rotString = '';
+
+  for (let index = 0; index < string.length; index += 1) {
+    rotString += rotateChar(string[index]);
+  }
+
+  return rotString;
+}
