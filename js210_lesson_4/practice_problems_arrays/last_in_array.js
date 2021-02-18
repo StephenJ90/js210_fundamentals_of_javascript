@@ -1,0 +1,21 @@
+// JS210 Fundamentals of JavaScript for Programmers > Arrays
+
+/*
+1.
+
+With arrays, you can access the first element's value with [0], but how do 
+you access the last value? Write a function named lastInArray that returns 
+he value of the last element in the array provided by the function's argument. 
+You may use the length property and the [] operator, but do not use any other 
+methods or properties.
+*/
+
+function lastInArray(array) {
+  return array[array.length - 1];
+}
+
+console.log(lastInArray([1, 2, 3, 4, 5]));
+
+// LS Solution:
+
+let lastInArray = arr => arr[arr.length - 1];
