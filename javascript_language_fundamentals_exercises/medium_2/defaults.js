@@ -1,4 +1,4 @@
-// JS210 - JavaScript Language Fundamentals > Medium 1
+// JS210 - JavaScript Language Fundamentals > Medium 2
 
 
 // Defaults
